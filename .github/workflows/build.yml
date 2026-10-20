@@ -1,0 +1,23 @@
+name: Build Cover Letter
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Compile LaTeX
+              uses: xu-cheng/latex-action@v4
+              with:
+                  root_file: cover_letter.tex
+
+            - name: Upload PDF
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cover-letter
+                  path: cover_letter.pdf
